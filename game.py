@@ -1,51 +1,26 @@
-def game():
-    cmd = input('Welcome! What do you need?')
-    cmd = cmd.lower()
-    if cmd == 'help':
-        print('''
-        start - to start the car
-        stop - to stop the car
-        quit - to exit
-        ''')
-        cmd = input()
-        cmd = cmd.lower()
-        if cmd == 'start':
-            print('Car has started!')
-        elif cmd == 'stop':
-            print('Car has stopped!')
-        elif cmd == 'quit':
-            print('Goodbye!')
+command = ""
+car_started = False
+while True:
+    command = input("What do you need?").lower()
+    if command == "start":
+        if car_started:
+            print("Car is still on")
         else:
-            print('I do not understand.')
-            print('''
-            Please, type a correct command.
-            start - to start the car
-            stop - to stop the car
-            quit - to exit
-            ''')
-            def ask_help():
-                cmd = input()
-                cmd = cmd.lower()
-                if cmd == 'start':
-                    print('Car has started!')
-                elif cmd == 'stop':
-                    print('Car has stopped!')
-                elif cmd == 'quit':
-                    print('Goodbye!')
-                else:
-                    print('I do not understand.')
-                    print('''
-                                        Please, type a correct command.
-                                        start - to start the car
-                                        stop - to stop the car
-                                        quit - to exit
-                                        ''')
-                    ask_help()
-            ask_help()
-
-
-    else:
-        print('I do not understand')
-        game()
-
-game()
+            car_started = True
+            print("Car has started.")
+    elif command == "stop":
+        if not car_started:
+            print("Car is still off")
+        else:
+            car_started = False
+            print("Car has stopped.")
+    elif command == "help":
+        print("""
+start - to start car
+stop - to stop car
+quit - to quit
+        """)
+    elif command == "quit":
+        print("Goodbye!")
+        break
+    else: print("Sorry! I don't understand.")
