@@ -22,24 +22,39 @@ Welcome!
 To check if a number is on the list, enter the number:
 ''')
 
-included = bool
+# old method
 
+# included = bool
+#
+#
+# while ges == '' or not ges.isnumeric():
+#     ges = input('Please enter a non-decimal number!:')
+# else:
+#     guess = int(ges)
+#     for item in numbers:
+#
+#         if guess == item:
+#             included = True
+#             print(f'Your number ({guess}), is on index {numbers.index(item)}.')
+#             break
+#         else:
+#             included = False
+#
+#     if not included:
+#         print(f'Your number ({guess}), is not on the list!')
+
+# new method
 
 while ges == '' or not ges.isnumeric():
     ges = input('Please enter a non-decimal number!:')
 else:
     guess = int(ges)
-    for item in numbers:
-
-        if guess == item:
-            included = True
-            print(f'Your number ({guess}), is on index {numbers.index(item)}.')
-            break
-        else:
-            included = False
-
-    if not included:
+    # print(guess)
+    # print(numbers.index(guess))
+    if not guess in numbers:
         print(f'Your number ({guess}), is not on the list!')
+    else:
+        print(f'Your number ({guess}), is on index {numbers.index(guess)}.')
 
 
 
