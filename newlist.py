@@ -28,17 +28,25 @@ matrix = [
 # print(numbers1)
 
 # to remove duplicate numbers in a list
-numbers = [5,8,3,12,7,7,7,3,3,7,3,5,8,5,8,12,5]
-for number in numbers:
-    if numbers.count(number) > 1:
-        place = numbers.index(number)
-        item = number
-        def repeat_fun(times,f,*args):
-            for i in range(times):
-                f(*args)
-        def do():
-            numbers.remove(item)
-        repeat_fun(numbers.count(number), do)
+# numbers = [5,8,3,12,7,7,7,3,3,7,3,5,8,5,8,12,5]
+# for number in numbers:
+#     if numbers.count(number) > 1:
+#         place = numbers.index(number)
+#         item = number
+#         def repeat_removal(times,f):
+#             for i in range(times):
+#                 f()
+#         def do():
+#             numbers.remove(item)
+#         repeat_removal(numbers.count(number), do)
+#
+#         numbers.insert(place,item)
+# print(numbers)
 
-        numbers.insert(place,item)
-print(numbers)
+# # new method
+numbers = [5,8,3,12,7,7,7,3,3,7,3,5,8,5,8,12,5]
+uniques = []
+for number in numbers:
+    if number not in uniques:
+        uniques.append(number)
+print(uniques)
