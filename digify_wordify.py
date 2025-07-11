@@ -1,16 +1,19 @@
-from playsound3 import playsound
+from playsound import playsound
+from mutagen.mp3 import MP3
+import time
+import miniaudio
 
-zero = "C:/Users/PC/PycharmProjects/PythonProject/HelloWorld/audio-numbers/0.wav"
-one = "C:/Users/PC/PycharmProjects/PythonProject/HelloWorld/audio-numbers/1.wav"
-two = "C:/Users/PC/PycharmProjects/PythonProject/HelloWorld/audio-numbers/2.wav"
-three = "C:/Users/PC/PycharmProjects/PythonProject/HelloWorld/audio-numbers/3.wav"
-four = "C:/Users/PC/PycharmProjects/PythonProject/HelloWorld/audio-numbers/4.wav"
-five = "C:/Users/PC/PycharmProjects/PythonProject/HelloWorld/audio-numbers/5.wav"
-six = "C:/Users/PC/PycharmProjects/PythonProject/HelloWorld/audio-numbers/6.wav"
-seven = "C:/Users/PC/PycharmProjects/PythonProject/HelloWorld/audio-numbers/7.wav"
-eight = "C:/Users/PC/PycharmProjects/PythonProject/HelloWorld/audio-numbers/8.wav"
-nine = "C:/Users/PC/PycharmProjects/PythonProject/HelloWorld/audio-numbers/9.wav"
-error = "C:/Users/PC/PycharmProjects/PythonProject/HelloWorld/audio-numbers/error-126627.mp3"
+zero ="./audio-numbers/0.mp3"
+one ="./audio-numbers/1.mp3"
+two ="./audio-numbers/2.mp3"
+three ="./audio-numbers/3.mp3"
+four ="./audio-numbers/4.mp3"
+five ="./audio-numbers/5.mp3"
+six = "./audio-numbers/6.mp3"
+seven = "./audio-numbers/7.mp3"
+eight = "./audio-numbers/8.mp3"
+nine = "./audio-numbers/9.mp3"
+error = "./audio-numbers/error-126627.mp3"
 
 digits_mapping = {
     '1': 'One',
@@ -24,6 +27,7 @@ digits_mapping = {
     '9': 'Nine',
     '0': 'Zero'
 }
+
 sound_mapping= {
     '1': one,
     '2': two,
@@ -50,8 +54,6 @@ words_mapping = {
     'zero': '0'
 }
 
-
-
 is_digit = bool
 print('Welcome! What would you like?')
 multiple= 1
@@ -64,12 +66,22 @@ while True:
         output = ''
         sound = []
         for character in digits:
+
+            # output += digits_mapping.get(character, '!') + ' '
             sound.append(sound_mapping.get(character, error))
-            output += digits_mapping.get(character, '!') + ' '
-        print(f"Result: {output}")
+        # print(f"Result: {output}")
         # print(sound)
         for x in sound:
-            playsound(x)
+            # playsound(x)
+            file = x
+            audio = MP3(file)
+            length = audio.info.length
+            stream = miniaudio.stream_file(file)
+
+            with miniaudio.PlaybackDevice() as device:
+                device.start(stream)
+                print('playing')
+                time.sleep(length)
     elif command == 'w':
         is_digit = False
         print("You have selected Words to Digits.")
